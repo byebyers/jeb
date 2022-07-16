@@ -11,15 +11,15 @@ export default function Footer() {
 
               <span className="block">&bull;</span>
 
-              <span className="block"><a href="https://github.com/samuelgoddard/next-tailwind-motion" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Github</a></span>
+              <span className="block"><a href="https://github.com/byebyers/jeb" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Github</a></span>
 
               <span className="block">&bull;</span>
 
-              <span className="block"><a href="https://twitter.com/samuelgoddard" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Twitter</a></span>
+              <span className="block"><a href="https://twitter.com/bybyers" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Twitter</a></span>
             </div>
 
             <div className="md:ml-auto w-full md:w-auto flex space-x-1">
-              <span className="block">Maintained by <a href="https://samgoddard.co.uk" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Sam Goddard</a></span>
+              <span className="block">Maintained by <a href="https://jacobbyers.me" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Jacob Byers</a></span>
             </div>
           </div>
         </div>
