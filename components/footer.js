@@ -1,29 +1,17 @@
-import Container from '@/components/container'
+import FancyLink from '@/components/fancyLink'
 
-export default function Footer() {
+export default function Footer({contact}) {
   return (
-    <footer className="mb-4">
-      <Container>
-        <div className="border-t border-black py-4">
-          <div className="flex flex-wrap text-xs">
-            <div className="flex space-x-1 mb-1 md:mb-0">
-              <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">MIT License</a>
-
-              <span className="block">&bull;</span>
-
-              <span className="block"><a href="https://github.com/byebyers/jeb" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Github</a></span>
-
-              <span className="block">&bull;</span>
-
-              <span className="block"><a href="https://twitter.com/bybyers" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Twitter</a></span>
-            </div>
-
-            <div className="md:ml-auto w-full md:w-auto flex space-x-1">
-              <span className="block">Maintained by <a href="https://jacobbyers.me" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-500 focus:text-gray-500">Jacob Byers</a></span>
-            </div>
-          </div>
+    <footer className="absolute w-full bottom-0 px-5">
+        <div className="border- text-white py-4 space-x-6">
+          {contact.socials.map((item, i) => {
+            return (
+              <span key={i}>
+                <FancyLink destination={item.url} a11yText={`Navigate to the ${item.title}`} label={item.title} extraClasses="hover:underline no-underline" />
+              </span>
+            )
+          })}
         </div>
-      </Container>
     </footer>
   )
 }
