@@ -3,40 +3,93 @@ import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
 import FancyLink from '@/components/fancyLink'
-import { fade } from '@/helpers/transitions'
+import Image from '@/components/image'
+import { fade, fadeDelay } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
+import SanityPageService from '@/services/sanityPageService'
+import BlockContent from '@sanity/block-content-to-react'
 
-export default function About() {
+const query = `{
+  "about": *[_type == "about"][0]{
+    title,
+    heroText,
+    heroImage {
+      asset-> {
+        ...,
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
+    seo {
+      ...,
+      shareGraphic {
+        asset->
+      }
+    }
+  },
+  "contact": *[_type == "contact"][0]{
+    email,
+    socials[] {
+      title,
+      url
+    }
+  }
+}`
+
+const pageService = new SanityPageService(query)
+
+export default function About(initialData) {
+  const { data: { about, contact } } = pageService.getPreviewHook(initialData)()
+
   return (
     <Layout>
-      <NextSeo title="About" />
+      <NextSeo title={about.title} />
 
       <Header />
 
       <LazyMotion features={domAnimation}>
-        <m.div
+        <m.main
           initial="initial"
           animate="enter"
           exit="exit"
-          className="mb-12 md:mb-16 xl:mb-24"
+          className="px-5 pt-[5rem] min-h-screen grid bg-black text-white"
         >
-          <Container>
-            <m.div variants={fade}>
-              <h1 className="font-bold text-2xl md:text-3xl xl:text-4xl mb-4">About Page</h1>
-              <div className="content max-w-3xl mb-4">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
-
-                <p>Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              
-              <FancyLink destination="/" a11yText="Navigate to the home page" label="Home Page" />
+          <m.section 
+            variants={fade}
+            className="relative min-h-[calc(100vh-8rem)]" 
+          >
+            <m.div variants={fadeDelay} className="text-4xl h-full w-3/5 grid content-center leading-[3rem] ml-5">
+              <BlockContent serializers={{ container: ({ children }) => children }} blocks={about.heroText} />
             </m.div>
-          </Container>
-        </m.div>
+            <m.div class="absolute bottom-5 opacity-75 right-5">
+              <Image
+                image={about.heroImage}
+                focalPoint={about.heroImage.hotspot}
+                className="w-[30rem]"
+                alt={about.heroImage.alt}
+              />
+            </m.div>
+          </m.section>
+          <m.section>
+            <h2>Services</h2>
+          </m.section>
+        </m.main>
       </LazyMotion>
 
-      <Footer />
+      <Footer contact={contact} />
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const cms = await pageService.fetchQuery(context)
+
+  return {
+    props: { ...cms }
+  }
 }

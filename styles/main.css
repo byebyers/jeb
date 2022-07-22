@@ -13,6 +13,11 @@
 
 
 /* Simple defaults */
+
 body {
   @apply font-sans antialiased text-black bg-white;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

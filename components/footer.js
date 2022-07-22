@@ -2,8 +2,8 @@ import FancyLink from '@/components/fancyLink'
 
 export default function Footer({contact}) {
   return (
-    <footer className="absolute w-full bottom-0 px-5">
-        <div className="border- text-white py-4 space-x-6">
+    <footer className="w-full h-[3.5rem] px-5 bg-black">
+        <div className="text-white py-4 space-x-6">
           {contact.socials.map((item, i) => {
             return (
               <span key={i}>

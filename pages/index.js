@@ -25,6 +25,7 @@ const query = `{
   },
   "work": *[_type == "work"] | order(releaseDate desc){
     title,
+    category,
     thumbnail {
       asset-> {
         ...,
@@ -37,6 +38,17 @@ const query = `{
       },
     },
     image {
+      asset-> {
+        ...,
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
+    logo {
       asset-> {
         ...,
       },
@@ -76,18 +88,29 @@ export default function Home(initialData) {
             initial="initial"
             animate="enter"
             exit="exit"
-            className="px-5 pb-[3rem] pt-[5rem] min-h-screen flex bg-black text-white/75"
+            className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex bg-black text-white"
           >
-            <section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group ">
+            <m.section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group " variants={fade}>
               {greeting === true ? (
                 <m.div variants={fadeDelay} className="text-4xl h-full w-full grid content-center leading-[3rem] ml-5">
                   <BlockContent serializers={{ container: ({ children }) => children }} blocks={home.content} />
                 </m.div> 
               ) : (
                 <div className='w-full h-full relative'>
-                  <div className='absolute opacity-1 text-white/100 z-50 w-full h-full grid content-center justify-center'>
-                    <h1 className='text-4xl bold bg-black p-2'>test</h1>
+                  <div className='absolute opacity-100 z-40 w-full h-full grid content-center justify-center'>
+                    <Image
+                      image={work[current].logo}
+                      focalPoint={work[current].logo.hotspot}
+                      className="w-[20rem]"
+                      alt={work[current].logo.alt}
+                    />
                   </div>
+                  {work[current].category === 'story' && (
+                    <div className='absolute w-full h-full grid justify-end content-around'>
+                      <div className='bg-white p-2 translate-x-8 rotate-90 text-black'>Case Study</div>
+                      <div></div>
+                    </div>
+                  )}
                   <Image
                     image={work[current].image}
                     focalPoint={work[current].image.hotspot}
@@ -98,8 +121,8 @@ export default function Home(initialData) {
                   />
                 </div>
               )}
-            </section>
-            <section className="w-2/5 grid pl-5 content-center">
+            </m.section>
+            <m.section className="w-2/5 grid pl-5 content-center" variants={fade}>
                 {work?.map((item, i) => {
                   return (
                     <div 
@@ -125,7 +148,7 @@ export default function Home(initialData) {
                     </div>
                   )
                 })}
-            </section>
+            </m.section>
               
           </m.main>
         </LazyMotion>
