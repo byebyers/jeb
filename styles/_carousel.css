@@ -3,7 +3,7 @@
 }
 
 .embla__viewport {
-  @apply overflow-hidden w-screen;
+  @apply overflow-hidden w-[calc(100vw-2.5rem)];
 }
 
 .embla__viewport.is-draggable {
