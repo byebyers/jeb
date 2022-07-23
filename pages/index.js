@@ -88,7 +88,7 @@ export default function Home(initialData) {
             initial="initial"
             animate="enter"
             exit="exit"
-            className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex bg-black text-white"
+            className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex text-white"
           >
             <m.section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group " variants={fade}>
               {greeting === true ? (

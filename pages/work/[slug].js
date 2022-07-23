@@ -12,7 +12,7 @@ import SanityBlockContent from '@sanity/block-content-to-react'
 import Image from '@/components/image'
 import Link from 'next/link'
 //import Carousel from '@/components/carousel'
-//import BodyRenderer from '@/components/body-renderer'
+import BodyRenderer from '@/components/body-renderer'
 //import Loader from '@/components/loader'
 
 const query = `*[_type == "work" && slug.current == $slug][0]{
@@ -30,6 +30,9 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
       y
     },
   },
+  contentBlocks[] {
+    ...,
+  },
   "contact": *[_type == "contact"][0]{
     email,
     socials[] {
@@ -42,7 +45,7 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
 const pageService = new SanityPageService(query)
 
 export default function WorkSlug(initialData) {
-  const { data: { title, image, stack, contact, credits }  } = pageService.getPreviewHook(initialData)()
+  const { data: { title, image, stack, contact, credits, contentBlocks }  } = pageService.getPreviewHook(initialData)()
 
   const containerRef = useRef(null)
   return (
@@ -54,43 +57,50 @@ export default function WorkSlug(initialData) {
             initial="initial"
             animate="enter"
             exit="exit"
-            className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex bg-black text-white"
+            className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] text-white"
           >
-            <m.section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group relative" variants={fade}>
-              <div className="absolute w-full h-full grid z-40 px-5 content-end leading-none">
-                <h1 className="text-[90px]">{title}</h1>
-              </div>
-              <div className='w-full h-full relative'>
-                <Image
-                  image={image}
-                  focalPoint={image.hotspot}
-                  objectSettings="cover"
-                  layout="fill"
-                  className="opacity-10"
-                  alt={image.alt}
-                />
-              </div>
-            </m.section>
-            <m.section className="w-2/5 grid pl-5 content-center" variants={fade}>
-              <h2 className='w-full border-b border-white text-white/75'>The Tech Stack</h2>
-              {stack?.map((item, i) => {
-                return (
-                  <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end">
-                    <span className="text-4xl">{item.title}</span>
-                    <span className="text-2xl text-white/75">{item.type}</span>
+            <m.article className="flex flex-wrap">
+              <m.header className="flex flex-wrap w-full">
+                <m.section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group relative min-h-[calc(100vh-8rem)]" variants={fade}>
+                  <div className="absolute w-full h-full grid z-40 px-5 content-end leading-none">
+                    <h1 className="text-[90px]">{title}</h1>
                   </div>
-                )
-              })}
-              <h2 className='w-full border-b border-white mt-8 text-white/75'>Special Thanks</h2>
-              {credits?.map((item, i) => {
-                return (
-                  <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end">
-                    <span className="text-4xl">{item.job}</span>
-                    <span className="text-2xl text-white/75">{item.name}</span>
+                  <div className='w-full h-full relative'>
+                    <Image
+                      image={image}
+                      focalPoint={image.hotspot}
+                      objectSettings="cover"
+                      layout="fill"
+                      className="opacity-10"
+                      alt={image.alt}
+                    />
                   </div>
-                )
-              })}
-            </m.section>
+                </m.section>
+                <m.section className="w-2/5 grid pl-5 content-center" variants={fade}>
+                  <h2 className='w-full border-b border-white text-white/75'>The Tech Stack</h2>
+                  {stack?.map((item, i) => {
+                    return (
+                      <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end">
+                        <span className="text-4xl">{item.title}</span>
+                        <span className="text-2xl text-white/75">{item.type}</span>
+                      </div>
+                    )
+                  })}
+                  <h2 className='w-full border-b border-white mt-8 text-white/75'>Special Thanks</h2>
+                  {credits?.map((item, i) => {
+                    return (
+                      <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end">
+                        <span className="text-4xl">{item.job}</span>
+                        <span className="text-2xl text-white/75">{item.name}</span>
+                      </div>
+                    )
+                  })}
+                </m.section>
+              </m.header>
+              <m.section className="py-40 grid w-full">
+                <BodyRenderer body={contentBlocks} />
+              </m.section>
+            </m.article>
           </m.main>
         </LazyMotion>
       <Footer contact={contact} />

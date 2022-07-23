@@ -60,7 +60,7 @@ export default function About(initialData) {
           initial="initial"
           animate="enter"
           exit="exit"
-          className="px-5 pt-[5rem] min-h-screen grid bg-black text-white"
+          className="px-5 pt-[5rem] min-h-screen grid text-white"
         >
           <m.section 
             variants={fade}
