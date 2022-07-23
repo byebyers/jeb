@@ -32,6 +32,18 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
   },
   contentBlocks[] {
     ...,
+    image {
+      asset-> {
+        ...
+      },
+      overrideVideo {
+        asset-> {
+          ...
+        }
+      },
+      alt,
+      caption
+    },
   },
   "contact": *[_type == "contact"][0]{
     email,
@@ -80,7 +92,7 @@ export default function WorkSlug(initialData) {
                   <h2 className='w-full border-b border-white text-white/75'>The Tech Stack</h2>
                   {stack?.map((item, i) => {
                     return (
-                      <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end">
+                      <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end" key={`tech-${i}`}>
                         <span className="text-4xl">{item.title}</span>
                         <span className="text-2xl text-white/75">{item.type}</span>
                       </div>
@@ -89,7 +101,7 @@ export default function WorkSlug(initialData) {
                   <h2 className='w-full border-b border-white mt-8 text-white/75'>Special Thanks</h2>
                   {credits?.map((item, i) => {
                     return (
-                      <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end">
+                      <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end" key={`job-${i}`}>
                         <span className="text-4xl">{item.job}</span>
                         <span className="text-2xl text-white/75">{item.name}</span>
                       </div>
