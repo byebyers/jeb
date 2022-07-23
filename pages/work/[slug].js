@@ -44,6 +44,37 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
       alt,
       caption
     },
+    images[] {
+      asset-> {
+        ...
+      },
+      hotspot {
+        x,
+        y
+      },
+      overrideVideo {
+        asset-> {
+          ...
+        }
+      },
+      alt,
+      caption
+    },
+    items[] {
+      ...,
+      image {
+        asset-> {
+          ...
+        },
+        overrideVideo {
+          asset-> {
+            ...
+          }
+        },
+        alt,
+        caption
+      },
+    }
   },
   "contact": *[_type == "contact"][0]{
     email,
@@ -109,7 +140,7 @@ export default function WorkSlug(initialData) {
                   })}
                 </m.section>
               </m.header>
-              <m.section className="py-40 grid w-full">
+              <m.section className="py-40">
                 <BodyRenderer body={contentBlocks} />
               </m.section>
             </m.article>

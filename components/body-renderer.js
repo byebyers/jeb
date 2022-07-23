@@ -1,7 +1,7 @@
 // import BlockContentWrapper from '@/components/block-content-wrapper'
 // import ModularCollectionGridBlock from '@/components/modular-collection-grid-block'
 import ModularImageBlock from '@/components/modular-image-block'
-// import ModularImageCarouselBlock from '@/components/modular-image-carousel-block'
+import ModularImageCarouselBlock from '@/components/modular-image-carousel-block'
 import ModularTextBlock from '@/components/modular-text-block'
 // import ModularImageTextBlock from '@/components/modular-image-text-block'
 // import ModularDoubleImageBlock from '@/components/modular-double-image-block'
@@ -31,13 +31,13 @@ const bodySerializers = {
         {children}
       </div>
   },
-  // imageCarouselBlock: {
-  //   component: ModularImageCarouselBlock,
-  //   wrapper: ({ children }) => 
-  //     <div className="mb-[15vh]">
-  //       {children}
-  //     </div>
-  // },
+  imageCarouselBlock: {
+    component: ModularImageCarouselBlock,
+    wrapper: ({ children }) => 
+      <div className="mb-[15vh]">
+        {children}
+      </div>
+  },
   textBlock: {
     component: ModularTextBlock,
     wrapper: ({ children }) => 
