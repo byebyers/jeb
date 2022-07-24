@@ -3,7 +3,7 @@ import ModularCollectionGridBlock from '@/components/modular-collection-grid-blo
 import ModularImageBlock from '@/components/modular-image-block'
 import ModularImageCarouselBlock from '@/components/modular-image-carousel-block'
 import ModularTextBlock from '@/components/modular-text-block'
-// import ModularImageTextBlock from '@/components/modular-image-text-block'
+import ModularImageTextBlock from '@/components/modular-image-text-block'
 // import ModularDoubleImageBlock from '@/components/modular-double-image-block'
 //import ModularSideBySideImageBlock from '@/components/modular-side-by-side-image-block'
 
@@ -45,13 +45,13 @@ const bodySerializers = {
         {children}
       </div>
   },
-  // modularImageTextBlock: {
-  //   component: ModularImageTextBlock,
-  //   wrapper: ({ children }) => 
-  //     <div className="mb-[15vh]">
-  //       {children}
-  //     </div>
-  // },
+  modularImageTextBlock: {
+    component: ModularImageTextBlock,
+    wrapper: ({ children }) => 
+      <div className="mb-[15vh]">
+        {children}
+      </div>
+  },
   // modularDoubleImageBlock: {
   //   component: ModularDoubleImageBlock,
   //   wrapper: ({ children }) => 
