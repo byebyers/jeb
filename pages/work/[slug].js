@@ -44,6 +44,30 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
       alt,
       caption
     },
+    image1 {
+      asset-> {
+        ...
+      },
+      overrideVideo {
+        asset-> {
+          ...
+        }
+      },
+      alt,
+      caption
+    },
+    image2 {
+      asset-> {
+        ...
+      },
+      overrideVideo {
+        asset-> {
+          ...
+        }
+      },
+      alt,
+      caption
+    },
     images[] {
       asset-> {
         ...

@@ -1,4 +1,3 @@
-// import BlockContentWrapper from '@/components/block-content-wrapper'
 import ModularCollectionGridBlock from '@/components/modular-collection-grid-block'
 import ModularImageBlock from '@/components/modular-image-block'
 import ModularImageCarouselBlock from '@/components/modular-image-carousel-block'
@@ -10,13 +9,6 @@ import ModularSideBySideImageBlock from '@/components/modular-side-by-side-image
 const notImplemented = ({ type }) => <h1>Not implemented {type}</h1>
 
 const bodySerializers = {
-  // block: {
-  //   component: BlockContentWrapper,
-  //   wrapper: ({ children }) => 
-  //     <div className="mb-[15vh]">
-  //       {children}
-  //     </div>
-  // },
   collectionGridBlock: {
     component: ModularCollectionGridBlock,
     wrapper: ({ children }) => 
