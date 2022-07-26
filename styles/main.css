@@ -22,3 +22,19 @@ body {
     display: none;
   }
 }
+
+.ticker-wrapper {
+    @apply overflow-hidden w-64;
+}
+
+.Marquee { 
+    white-space: nowrap;
+    overflow-x: hidden;
+    display: block;
+    position: relative;   
+}
+
+.MarqueeContent {
+    display: inline-block;
+    text-align: left;
+}

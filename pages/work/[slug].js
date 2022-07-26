@@ -17,6 +17,7 @@ import BodyRenderer from '@/components/body-renderer'
 
 const query = `*[_type == "work" && slug.current == $slug][0]{
   title,
+  url,
   stack,
   credits[] {
     job,
@@ -119,19 +120,24 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
       title,
       url
     }
+  },
+  "menu": *[_type == "menu"][0]{
+    butter
   }
 }`
 
 const pageService = new SanityPageService(query)
 
 export default function WorkSlug(initialData) {
-  const { data: { title, image, stack, contact, credits, contentBlocks, logo }  } = pageService.getPreviewHook(initialData)()
+  const { data: { title, image, stack, contact, credits, contentBlocks, logo, url, menu }  } = pageService.getPreviewHook(initialData)()
 
   const containerRef = useRef(null)
   return (
     <Layout>
       <NextSeo title={title} />
-      <Header />
+      <Header 
+        butterBar={menu.butter}
+      />
         <LazyMotion features={domAnimation}>
           <m.main
             initial="initial"
@@ -143,10 +149,14 @@ export default function WorkSlug(initialData) {
               <m.header className="flex flex-wrap w-full">
                 <m.section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group relative min-h-[calc(100vh-8rem)]" variants={fade}>
                   <div className="absolute w-full h-full grid z-40 px-5 content-end leading-none">
+                   
+                    <div className="flex content-end justify-between">
                     <h1 className="text-[30px]">{title}</h1>
+                    <FancyLink  destination={url} a11yText={`Navigate to the ${title} site`} label="Visit Site" extraClasses="hover:underline no-underline text-[30px]" />
+                    </div>
                   </div>
                   <div className='w-full h-full relative'>
-                    <div className='absolute opacity-100 z-40 w-full h-full grid content-center justify-center'>
+                    <div className='absolute opacity-100 z-30 w-full h-full grid content-center justify-center'>
                       <Image
                         image={logo}
                         focalPoint={logo.hotspot}

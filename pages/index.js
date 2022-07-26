@@ -71,13 +71,16 @@ const query = `{
       title,
       url
     }
+  },
+  "menu": *[_type == "menu"][0]{
+    butter
   }
 }`
 
 const pageService = new SanityPageService(query)
 
 export default function Home(initialData) {
-  const { data: { home, work, contact } } = pageService.getPreviewHook(initialData)()
+  const { data: { home, work, contact, menu } } = pageService.getPreviewHook(initialData)()
   const [current, setCurrent] = useState(0);
   const [greeting, setGreeting] = useState(true);
   const imgStyle = {
@@ -87,7 +90,9 @@ export default function Home(initialData) {
   return (
     <Layout>
       <NextSeo title={home.title} />
-      <Header />
+      <Header 
+        butterBar={menu.butter}
+      />
         <LazyMotion features={domAnimation}>
           <m.main
             initial="initial"
@@ -106,7 +111,7 @@ export default function Home(initialData) {
                     <Image
                       image={work[current].logo}
                       focalPoint={work[current].logo.hotspot}
-                      className={`${work[current].orientation === 'banner' ? 'w-[30rem]' : 'button' ? 'w-[25rem]' : 'w-[20rem]'}`}
+                      className={`${work[current].orientation === 'banner' ? 'w-[30rem]' : 'button' ? 'w-[25rem]' : 'w-[25rem]'}`}
                       alt={work[current].logo.alt}
                     />
                   </div>

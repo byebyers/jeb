@@ -41,19 +41,24 @@ const query = `{
       title,
       url
     }
+  },
+  "menu": *[_type == "menu"][0]{
+    butter
   }
 }`
 
 const pageService = new SanityPageService(query)
 
 export default function About(initialData) {
-  const { data: { about, contact } } = pageService.getPreviewHook(initialData)()
+  const { data: { about, contact, menu } } = pageService.getPreviewHook(initialData)()
 
   return (
     <Layout>
       <NextSeo title={about.title} />
 
-      <Header />
+      <Header 
+        butterBar={menu.butter}
+      />
 
       <LazyMotion features={domAnimation}>
         <m.main
