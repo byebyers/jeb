@@ -33,6 +33,17 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
       y
     },
   },
+  logo {
+    asset-> {
+      ...,
+    },
+    caption,
+    alt,
+    hotspot {
+      x,
+      y
+    },
+  },
   contentBlocks[] {
     ...,
     image {
@@ -114,7 +125,7 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
 const pageService = new SanityPageService(query)
 
 export default function WorkSlug(initialData) {
-  const { data: { title, image, stack, contact, credits, contentBlocks }  } = pageService.getPreviewHook(initialData)()
+  const { data: { title, image, stack, contact, credits, contentBlocks, logo }  } = pageService.getPreviewHook(initialData)()
 
   const containerRef = useRef(null)
   return (
@@ -132,15 +143,23 @@ export default function WorkSlug(initialData) {
               <m.header className="flex flex-wrap w-full">
                 <m.section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group relative min-h-[calc(100vh-8rem)]" variants={fade}>
                   <div className="absolute w-full h-full grid z-40 px-5 content-end leading-none">
-                    <h1 className="text-[90px]">{title}</h1>
+                    <h1 className="text-[30px]">{title}</h1>
                   </div>
                   <div className='w-full h-full relative'>
+                    <div className='absolute opacity-100 z-40 w-full h-full grid content-center justify-center'>
+                      <Image
+                        image={logo}
+                        focalPoint={logo.hotspot}
+                        className={`${logo.orientation === 'banner' ? 'w-[30rem]' : 'button' ? 'w-[25rem]' : 'w-[20rem]'}`}
+                        alt={logo.alt}
+                      />
+                    </div>
                     <Image
                       image={image}
                       focalPoint={image.hotspot}
                       objectSettings="cover"
                       layout="fill"
-                      className="opacity-10"
+                      className="opacity-20"
                       alt={image.alt}
                     />
                   </div>

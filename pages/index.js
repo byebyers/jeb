@@ -61,7 +61,9 @@ const query = `{
         x,
         y
       },
-    }
+    },
+    orientation,
+    bgColor
   },
   "contact": *[_type == "contact"][0]{
     email,
@@ -104,7 +106,7 @@ export default function Home(initialData) {
                     <Image
                       image={work[current].logo}
                       focalPoint={work[current].logo.hotspot}
-                      className="w-[20rem]"
+                      className={`${work[current].orientation === 'banner' ? 'w-[30rem]' : 'button' ? 'w-[25rem]' : 'w-[20rem]'}`}
                       alt={work[current].logo.alt}
                     />
                   </div>
@@ -114,43 +116,46 @@ export default function Home(initialData) {
                       <div></div>
                     </div>
                   )}
-                  <Image
-                    image={work[current].image}
-                    focalPoint={work[current].image.hotspot}
-                    objectSettings="cover"
-                    layout="fill"
-                    className="opacity-40"
-                    alt={work[current].image.alt}
-                  />
+                  <div className={`${work[current].bgColor === true ? 'bg-white' : ''} w-full h-full`}>
+                    <Image
+                      image={work[current].image}
+                      focalPoint={work[current].image.hotspot}
+                      objectSettings="cover"
+                      layout="fill"
+                      className="opacity-20"
+                      alt={work[current].image.alt}
+                    />
+                  </div>
                 </div>
               )}
             </m.section>
             <m.section className="w-2/5 grid pl-5 content-center" variants={fade}>
                 {work?.map((item, i) => {
                   return (
-                    <Link href={`/work/${item.slug.current}`}>
-                    <div 
-                      key={i} 
-                      onMouseEnter={() => (
-                        setCurrent(i),
-                        setGreeting(false)
-                      )}
-                      onMouseLeave={() => (
-                        setCurrent(0),
-                        setGreeting(true)
-                      )}
-                    >
-                      <div className="p-2 border-b flex gap-x-2 border-white text-4xl w-full mb-2">
-                      
-                        <Image
-                            image={item.thumbnail}
-                            focalPoint={item.thumbnail.hotspot}
-                            className={`w-6 grid content-center`}
-                            alt={item.thumbnail.alt}
-                          />
-                        {item.title}
+                    <Link href={`/work/${item.slug.current}`} className="hover:cursor-pointer">
+                      <div 
+                        key={i} 
+                        onMouseEnter={() => (
+                          setCurrent(i),
+                          setGreeting(false)
+                        )}
+                        onMouseLeave={() => (
+                          setCurrent(0),
+                          setGreeting(true)
+                        )}
+                        className="hover:cursor-pointer"
+                      >
+                        <div className="p-2 border-b flex gap-x-2 border-white text-4xl w-full mb-2 hover:cursor-pointer">
+                        
+                          <Image
+                              image={item.thumbnail}
+                              focalPoint={item.thumbnail.hotspot}
+                              className={`w-6 grid content-center`}
+                              alt={item.thumbnail.alt}
+                            />
+                          {item.title}
+                        </div>
                       </div>
-                    </div>
                     </Link>
                   )
                 })}
