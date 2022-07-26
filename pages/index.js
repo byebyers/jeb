@@ -3,7 +3,7 @@ import Layout from '@/components/layout'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
-import FancyLink from '@/components/fancyLink'
+import Link from 'next/link'
 import Image from '@/components/image'
 import { fade, revealDelay, fadeDelay, revealDelayTop, revealDelayBottom, scaleDelay } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
@@ -26,6 +26,9 @@ const query = `{
   "work": *[_type == "work"] | order(releaseDate desc){
     title,
     category,
+    slug {
+      current
+    },
     thumbnail {
       asset-> {
         ...,
@@ -125,6 +128,7 @@ export default function Home(initialData) {
             <m.section className="w-2/5 grid pl-5 content-center" variants={fade}>
                 {work?.map((item, i) => {
                   return (
+                    <Link href={`/work/${item.slug.current}`}>
                     <div 
                       key={i} 
                       onMouseEnter={() => (
@@ -137,6 +141,7 @@ export default function Home(initialData) {
                       )}
                     >
                       <div className="p-2 border-b flex gap-x-2 border-white text-4xl w-full mb-2">
+                      
                         <Image
                             image={item.thumbnail}
                             focalPoint={item.thumbnail.hotspot}
@@ -146,6 +151,7 @@ export default function Home(initialData) {
                         {item.title}
                       </div>
                     </div>
+                    </Link>
                   )
                 })}
             </m.section>

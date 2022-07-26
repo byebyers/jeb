@@ -18,7 +18,10 @@ import BodyRenderer from '@/components/body-renderer'
 const query = `*[_type == "work" && slug.current == $slug][0]{
   title,
   stack,
-  credits,
+  credits[] {
+    job,
+    name
+  },
   image {
     asset-> {
       ...,
@@ -72,10 +75,6 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
       asset-> {
         ...
       },
-      hotspot {
-        x,
-        y
-      },
       overrideVideo {
         asset-> {
           ...
@@ -99,6 +98,9 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
         caption
       },
     }
+  },
+  slug {
+    current
   },
   "contact": *[_type == "contact"][0]{
     email,
@@ -153,7 +155,7 @@ export default function WorkSlug(initialData) {
                       </div>
                     )
                   })}
-                  <h2 className='w-full border-b border-white mt-8 text-white/75'>Special Thanks</h2>
+                  {credits && (<h2 className='w-full border-b border-white mt-8 text-white/75'>Special Thanks</h2>)}
                   {credits?.map((item, i) => {
                     return (
                       <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end" key={`job-${i}`}>
@@ -164,7 +166,7 @@ export default function WorkSlug(initialData) {
                   })}
                 </m.section>
               </m.header>
-              <m.section className="py-40">
+              <m.section className="pt-[15vh] w-full">
                 <BodyRenderer body={contentBlocks} />
               </m.section>
             </m.article>
