@@ -147,7 +147,7 @@ export default function WorkSlug(initialData) {
           >
             <m.article className="flex flex-wrap">
               <m.header className="flex flex-wrap gap-y-16 w-full">
-                <m.section className="w-full md:w-3/5 bg-gray-900 rounded-lg overflow-hidden block group relative min-h-[calc(100vh-8rem)]" variants={fade}>
+                <m.section className="w-full md:w-3/5 bg-gray-900 rounded-lg overflow-hidden block group relative min-h-[calc(100vh-14rem)] md:min-h-[calc(100vh-8rem)]" variants={fade}>
                   <div className="absolute w-full h-full grid z-40 px-5 content-end leading-none">
                    
                     <div className="flex content-end justify-between">

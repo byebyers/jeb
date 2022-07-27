@@ -149,8 +149,8 @@ export default function Home(initialData) {
                     <Link href={`/work/${item.slug.current}`} className="hover:cursor-pointer">
                       <m.div 
                         key={i} 
-                        whileHover={{ scale: 1.05, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
-                        whileTap={{ scale: 1, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
+                        whileHover={{ scale: 1.025, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
+                        whileTap={{ scale: 0.975, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
                         className="hover:cursor-pointer"
                       >
                         <div 
