@@ -4,7 +4,7 @@ import Footer from '@/components/footer'
 import Container from '@/components/container'
 import FancyLink from '@/components/fancyLink'
 import Image from '@/components/image'
-import { fade, fadeDelay } from '@/helpers/transitions'
+import { fade, fadeDelay, revealDelayBottom } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import SanityPageService from '@/services/sanityPageService'
@@ -71,7 +71,7 @@ export default function About(initialData) {
             variants={fade}
             className="grid md:relative gap-y-2 min-h-[calc(100vh-8rem)]" 
           >
-            <m.div class="md:absolute md:bottom-5 w-full md:w-auto opacity-75 md:right-5">
+            <m.div class="md:absolute md:bottom-5 w-full md:w-auto opacity-75 md:right-5" variants={revealDelayBottom}>
               <Image
                 image={about.heroImage}
                 focalPoint={about.heroImage.hotspot}
