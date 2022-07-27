@@ -54,7 +54,15 @@ export default function About(initialData) {
 
   return (
     <Layout>
-      <NextSeo title={about.title} />
+      <NextSeo 
+        title={about.seo.metaTitle} 
+        description={about.seo.metaDesc}
+        openGraph={{
+          images: [
+            { url: about.seo.shareGraphic.asset.url },
+          ],
+        }}
+      />
 
       <Header 
         butterBar={menu.butter}

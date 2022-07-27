@@ -5,11 +5,11 @@ export default {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://jeb.vercel.app/',
+    url: 'https://jacobbyers.me/',
     site_name: 'Jacob Byers',
   },
   twitter: {
-    handle: '@bybyers',
+    handle: '@byersjacob',
     site: '@site',
     cardType: 'summary_large_image',
   },

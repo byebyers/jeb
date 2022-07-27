@@ -111,6 +111,12 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
       },
     }
   },
+  seo {
+    ...,
+    shareGraphic {
+      asset->
+    }
+  },
   slug {
     current
   },
@@ -129,12 +135,20 @@ const query = `*[_type == "work" && slug.current == $slug][0]{
 const pageService = new SanityPageService(query)
 
 export default function WorkSlug(initialData) {
-  const { data: { title, image, stack, contact, credits, contentBlocks, logo, url, menu }  } = pageService.getPreviewHook(initialData)()
+  const { data: { title, image, stack, contact, credits, contentBlocks, logo, url, menu, seo }  } = pageService.getPreviewHook(initialData)()
 
   const containerRef = useRef(null)
   return (
     <Layout>
-      <NextSeo title={title} />
+      <NextSeo 
+        title={seo.metaTitle} 
+        description={seo.metaDesc}
+        openGraph={{
+          images: [
+            { url: seo.shareGraphic.asset.url },
+          ],
+        }}
+      />
       <Header 
         butterBar={menu.butter}
       />

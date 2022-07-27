@@ -89,7 +89,15 @@ export default function Home(initialData) {
 
   return (
     <Layout>
-      <NextSeo title={home.title} />
+      <NextSeo 
+        title={home.seo.metaTitle} 
+        description={home.seo.metaDesc}
+        openGraph={{
+          images: [
+            { url: home.seo.shareGraphic.asset.url },
+          ],
+        }}
+      />
       <Header 
         butterBar={menu.butter}
       />
