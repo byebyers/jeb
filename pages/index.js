@@ -100,7 +100,10 @@ export default function Home(initialData) {
             exit="exit"
             className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex text-white"
           >
-            <m.section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group " variants={fade}>
+            <m.section 
+              className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group " 
+              variants={fade}
+            >
               {greeting === true ? (
                 <m.div variants={fadeDelay} className="text-4xl h-full w-full grid content-center leading-[3rem] ml-5">
                   <BlockContent serializers={{ container: ({ children }) => children }} blocks={home.content} />
@@ -121,7 +124,10 @@ export default function Home(initialData) {
                       <div></div>
                     </div>
                   )}
-                  <div className={`${work[current].bgColor === true ? 'bg-white' : ''} w-full h-full`}>
+                  <m.div 
+                    className={`${work[current].bgColor === true ? 'bg-white' : ''} w-full h-full`}
+                    variants={fade}
+                  >
                     <Image
                       image={work[current].image}
                       focalPoint={work[current].image.hotspot}
@@ -130,7 +136,7 @@ export default function Home(initialData) {
                       className="opacity-20"
                       alt={work[current].image.alt}
                     />
-                  </div>
+                  </m.div>
                 </div>
               )}
             </m.section>
@@ -138,19 +144,24 @@ export default function Home(initialData) {
                 {work?.map((item, i) => {
                   return (
                     <Link href={`/work/${item.slug.current}`} className="hover:cursor-pointer">
-                      <div 
+                      <m.div 
                         key={i} 
-                        onMouseEnter={() => (
-                          setCurrent(i),
-                          setGreeting(false)
-                        )}
-                        onMouseLeave={() => (
-                          setCurrent(0),
-                          setGreeting(true)
-                        )}
+                        whileHover={{ scale: 1.05, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
+                        whileTap={{ scale: 0.8, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
                         className="hover:cursor-pointer"
                       >
-                        <div className="p-2 border-b flex gap-x-2 border-white text-4xl w-full mb-2 hover:cursor-pointer">
+                        <m.div 
+                          className="p-2 border-b flex gap-x-2 border-white text-4xl w-full mb-2 hover:cursor-pointer"
+                          variants={scaleDelay}
+                          onMouseEnter={() => (
+                            setCurrent(i),
+                            setGreeting(false)
+                          )}
+                          onMouseLeave={() => (
+                            setCurrent(0),
+                            setGreeting(true)
+                          )}
+                        >
                         
                           <Image
                               image={item.thumbnail}
@@ -159,8 +170,8 @@ export default function Home(initialData) {
                               alt={item.thumbnail.alt}
                             />
                           {item.title}
-                        </div>
-                      </div>
+                        </m.div>
+                      </m.div>
                     </Link>
                   )
                 })}
