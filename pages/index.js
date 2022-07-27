@@ -154,9 +154,8 @@ export default function Home(initialData) {
             <m.section className="md:w-2/5 w-full grid md:pl-5 content-center" variants={fade}>
                 {work?.map((item, i) => {
                   return (
-                    <Link href={`/work/${item.slug.current}`} className="hover:cursor-pointer">
+                    <Link href={`/work/${item.slug.current}`} className="hover:cursor-pointer" key={i}>
                       <m.div 
-                        key={i} 
                         whileHover={{ scale: 1.025, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
                         whileTap={{ scale: 0.975, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
                         className="hover:cursor-pointer"

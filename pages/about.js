@@ -79,7 +79,7 @@ export default function About(initialData) {
             variants={fade}
             className="grid md:relative gap-y-2 min-h-[calc(100vh-8rem)]" 
           >
-            <m.div class="md:absolute md:bottom-5 w-full md:w-auto opacity-75 md:right-5" variants={revealDelayBottom}>
+            <m.div className="md:absolute md:bottom-5 w-full md:w-auto opacity-75 md:right-5" variants={revealDelayBottom}>
               <Image
                 image={about.heroImage}
                 focalPoint={about.heroImage.hotspot}
@@ -129,7 +129,7 @@ export default function About(initialData) {
           </m.section>
           <m.section className="py-10 md:py-40 grid md:flex gap-y-4">
             <div className="w-full md:w-4/12">
-              <span class="block text-lg mb-3 uppercase">About Me</span>
+              <span className="block text-lg mb-3 uppercase">About Me</span>
             </div>
             <div className="w-full md:w8/12">
               <div className="w-10/12 md:w-8/12 xl:w-7/12 2xl:w-6/12 collab-text xl:pr-8 font-light text-2xl">
