@@ -5,7 +5,7 @@ import Footer from '@/components/footer'
 import Container from '@/components/container'
 import Link from 'next/link'
 import Image from '@/components/image'
-import { fade, revealDelay, fadeDelay, revealDelayTop, revealDelayBottom, scaleDelay } from '@/helpers/transitions'
+import { fade, revealDelay, fadeDelay, reveal, revealDelayTop, revealDelayBottom, scaleDelay } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import SanityPageService from '@/services/sanityPageService'
@@ -110,14 +110,17 @@ export default function Home(initialData) {
                 </m.div> 
               ) : (
                 <div className='w-full h-full relative'>
-                  <div className='absolute opacity-100 z-40 w-full h-full grid content-center justify-center'>
+                  <m.div 
+                    className='absolute opacity-100 z-40 w-full h-full grid content-center justify-center' 
+                    variants={revealDelayBottom}
+                  >
                     <Image
                       image={work[current].logo}
                       focalPoint={work[current].logo.hotspot}
                       className={`${work[current].orientation === 'banner' ? 'w-[30rem]' : 'button' ? 'w-[25rem]' : 'w-[25rem]'}`}
                       alt={work[current].logo.alt}
                     />
-                  </div>
+                  </m.div>
                   {work[current].category === 'story' && (
                     <div className='absolute w-full h-full grid justify-end content-around'>
                       <div className='bg-white p-2 translate-x-8 rotate-90 text-black'>Case Study</div>
@@ -147,12 +150,11 @@ export default function Home(initialData) {
                       <m.div 
                         key={i} 
                         whileHover={{ scale: 1.05, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
-                        whileTap={{ scale: 0.8, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
+                        whileTap={{ scale: 1, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
                         className="hover:cursor-pointer"
                       >
-                        <m.div 
-                          className="p-2 border-b flex gap-x-2 border-white text-2xl md:text-4xl w-full mb-2 hover:cursor-pointer"
-                          variants={scaleDelay}
+                        <div 
+                          className="p-2 border-b overflow-hidden border-white text-2xl md:text-4xl w-full mb-2 hover:cursor-pointer"
                           onMouseEnter={() => (
                             setCurrent(i),
                             setGreeting(false)
@@ -162,15 +164,20 @@ export default function Home(initialData) {
                             setGreeting(true)
                           )}
                         >
-                        
-                          <Image
-                              image={item.thumbnail}
-                              focalPoint={item.thumbnail.hotspot}
-                              className={`w-6 grid content-center`}
-                              alt={item.thumbnail.alt}
+                          <m.div
+                            variants={revealDelayBottom}
+                            className="flex gap-x-2"
+                          >
+                            <Image
+                            image={item.thumbnail}
+                            focalPoint={item.thumbnail.hotspot}
+                            className={`w-6 grid content-center`}
+                            alt={item.thumbnail.alt}
                             />
-                          {item.title}
-                        </m.div>
+                            {item.title}
+                          </m.div>
+                          
+                        </div>
                       </m.div>
                     </Link>
                   )

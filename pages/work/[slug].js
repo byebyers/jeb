@@ -156,14 +156,17 @@ export default function WorkSlug(initialData) {
                     </div>
                   </div>
                   <div className='w-full h-full relative'>
-                    <div className='absolute opacity-100 z-30 w-full h-full grid content-center justify-center'>
+                    <m.div 
+                      className='absolute opacity-100 z-30 w-full h-full grid content-center justify-center'
+                      variants={revealDelayBottom}
+                    >
                       <Image
                         image={logo}
                         focalPoint={logo.hotspot}
                         className={`${logo.orientation === 'banner' ? 'w-[18rem] md:w-[30rem]' : 'button' ? 'w-[18rem] md:w-[25rem]' : 'w-[18rem] md:w-[20rem]'}`}
                         alt={logo.alt}
                       />
-                    </div>
+                    </m.div>
                     <Image
                       image={image}
                       focalPoint={image.hotspot}
@@ -178,18 +181,28 @@ export default function WorkSlug(initialData) {
                   <h2 className='w-full border-b border-white text-white/75'>The Tech Stack</h2>
                   {stack?.map((item, i) => {
                     return (
-                      <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end" key={`tech-${i}`}>
-                        <span className="text-2xl md:text-4xl">{item.title}</span>
-                        <span className="text-large md:text-2xl text-white/75">{item.type}</span>
+                      <div className="p-2 border-b overflow-hidden border-white w-full mb-2 items-end" key={`tech-${i}`}>
+                        <m.div
+                          className="flex place-content-between w-full"
+                          variants={revealDelayBottom}
+                        >
+                          <span className="text-2xl md:text-4xl">{item.title}</span>
+                          <span className="text-large md:text-2xl text-white/75">{item.type}</span>
+                        </m.div>
                       </div>
                     )
                   })}
                   {credits && (<h2 className='w-full border-b border-white mt-8 text-white/75'>Special Thanks</h2>)}
                   {credits?.map((item, i) => {
                     return (
-                      <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end" key={`job-${i}`}>
-                        <span className="text-2xl md:text-4xl">{item.job}</span>
-                        <span className="text-large md:text-2xl text-white/75">{item.name}</span>
+                      <div className="p-2 border-b overflow-hidden border-white w-full mb-2 items-end" key={`job-${i}`}>
+                        <m.div
+                          className="flex place-content-between w-full"
+                          variants={revealDelayBottom}
+                        >
+                          <span className="text-2xl md:text-4xl">{item.job}</span>
+                          <span className="text-large md:text-2xl text-white/75">{item.name}</span>
+                        </m.div>
                       </div>
                     )
                   })}
