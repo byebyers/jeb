@@ -98,14 +98,14 @@ export default function Home(initialData) {
             initial="initial"
             animate="enter"
             exit="exit"
-            className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex text-white"
+            className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex flex-wrap gap-y-4 text-white"
           >
             <m.section 
-              className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group " 
+              className="md:w-3/5 w-full bg-gray-900 rounded-lg overflow-hidden block group p-5" 
               variants={fade}
             >
               {greeting === true ? (
-                <m.div variants={fadeDelay} className="text-4xl h-full w-full grid content-center leading-[3rem] ml-5">
+                <m.div variants={fadeDelay} className="text-2xl md:text-4xl h-full w-full grid content-center leading-[3rem]">
                   <BlockContent serializers={{ container: ({ children }) => children }} blocks={home.content} />
                 </m.div> 
               ) : (
@@ -140,7 +140,7 @@ export default function Home(initialData) {
                 </div>
               )}
             </m.section>
-            <m.section className="w-2/5 grid pl-5 content-center" variants={fade}>
+            <m.section className="md:w-2/5 w-full grid md:pl-5 content-center" variants={fade}>
                 {work?.map((item, i) => {
                   return (
                     <Link href={`/work/${item.slug.current}`} className="hover:cursor-pointer">
@@ -151,7 +151,7 @@ export default function Home(initialData) {
                         className="hover:cursor-pointer"
                       >
                         <m.div 
-                          className="p-2 border-b flex gap-x-2 border-white text-4xl w-full mb-2 hover:cursor-pointer"
+                          className="p-2 border-b flex gap-x-2 border-white text-2xl md:text-4xl w-full mb-2 hover:cursor-pointer"
                           variants={scaleDelay}
                           onMouseEnter={() => (
                             setCurrent(i),

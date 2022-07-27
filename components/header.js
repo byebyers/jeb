@@ -8,12 +8,12 @@ export default function Header({butterBar}) {
   };
   
   return (
-    <header className="p-5 absolute w-full font-bold text-4xl text-white">
-        <div className="flex flex-wrap">
-          <FancyLink destination="/" a11yText="Navigate to the home page" label="Jacob Byers" extraClasses="mb-1 no-underline md:mb-0" />
+    <header className="p-5 absolute w-full font-bold text-base md:text-4xl text-white">
+        <div className="flex border-b border-white">
+          <FancyLink destination="/" a11yText="Navigate to the home page" label="Jacob Byers" extraClasses="mb-1 hover:underline no-underline md:mb-0" />
 
           <div 
-            className="mx-auto w-[40rem] ticker-wrapper  text-center text-3xl  font-light border-b border-t border-white"
+            className="mx-auto w-[40rem] ticker-wrapper hidden md:block text-center text-3xl  font-light "
           >
              <Marquee velocity={0.04}>
              {
@@ -30,7 +30,7 @@ export default function Header({butterBar}) {
             
           </div>
 
-          <nav className="ml-auto flex space-x-6 w-full md:w-auto ">
+          <nav className="flex ml-auto  space-x-6 md:w-auto">
             <FancyLink destination="/" a11yText="Navigate to the home page" label="Work" extraClasses="hover:underline no-underline" />
 
             <FancyLink destination="/about" a11yText="Navigate to the about page" label="About" extraClasses="hover:underline no-underline" />

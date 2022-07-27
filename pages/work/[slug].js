@@ -146,13 +146,13 @@ export default function WorkSlug(initialData) {
             className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] text-white"
           >
             <m.article className="flex flex-wrap">
-              <m.header className="flex flex-wrap w-full">
-                <m.section className="w-3/5 bg-gray-900 rounded-lg overflow-hidden block group relative min-h-[calc(100vh-8rem)]" variants={fade}>
+              <m.header className="flex flex-wrap gap-y-16 w-full">
+                <m.section className="w-full md:w-3/5 bg-gray-900 rounded-lg overflow-hidden block group relative min-h-[calc(100vh-8rem)]" variants={fade}>
                   <div className="absolute w-full h-full grid z-40 px-5 content-end leading-none">
                    
                     <div className="flex content-end justify-between">
-                    <h1 className="text-[30px]">{title}</h1>
-                    <FancyLink  destination={url} a11yText={`Navigate to the ${title} site`} label="Visit Site" extraClasses="hover:underline no-underline text-[30px]" />
+                    <h1 className="text-xl md:text-[30px]">{title}</h1>
+                    <FancyLink  destination={url} a11yText={`Navigate to the ${title} site`} label="Visit Site" extraClasses="hover:underline no-underline text-xl md:text-[30px]" />
                     </div>
                   </div>
                   <div className='w-full h-full relative'>
@@ -160,7 +160,7 @@ export default function WorkSlug(initialData) {
                       <Image
                         image={logo}
                         focalPoint={logo.hotspot}
-                        className={`${logo.orientation === 'banner' ? 'w-[30rem]' : 'button' ? 'w-[25rem]' : 'w-[20rem]'}`}
+                        className={`${logo.orientation === 'banner' ? 'w-[18rem] md:w-[30rem]' : 'button' ? 'w-[18rem] md:w-[25rem]' : 'w-[18rem] md:w-[20rem]'}`}
                         alt={logo.alt}
                       />
                     </div>
@@ -174,13 +174,13 @@ export default function WorkSlug(initialData) {
                     />
                   </div>
                 </m.section>
-                <m.section className="w-2/5 grid pl-5 content-center" variants={fade}>
+                <m.section className="w-full md:w-2/5 grid md:pl-5 content-center" variants={fade}>
                   <h2 className='w-full border-b border-white text-white/75'>The Tech Stack</h2>
                   {stack?.map((item, i) => {
                     return (
                       <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end" key={`tech-${i}`}>
-                        <span className="text-4xl">{item.title}</span>
-                        <span className="text-2xl text-white/75">{item.type}</span>
+                        <span className="text-2xl md:text-4xl">{item.title}</span>
+                        <span className="text-large md:text-2xl text-white/75">{item.type}</span>
                       </div>
                     )
                   })}
@@ -188,8 +188,8 @@ export default function WorkSlug(initialData) {
                   {credits?.map((item, i) => {
                     return (
                       <div className="p-2 border-b flex place-content-between border-white w-full mb-2 items-end" key={`job-${i}`}>
-                        <span className="text-4xl">{item.job}</span>
-                        <span className="text-2xl text-white/75">{item.name}</span>
+                        <span className="text-2xl md:text-4xl">{item.job}</span>
+                        <span className="text-large md:text-2xl text-white/75">{item.name}</span>
                       </div>
                     )
                   })}
