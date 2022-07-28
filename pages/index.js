@@ -109,11 +109,11 @@ export default function Home(initialData) {
             className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex flex-wrap gap-y-4 text-white"
           >
             <m.section 
-              className="md:w-3/5 w-full bg-gray-900 rounded-lg overflow-hidden block group p-5" 
+              className="md:w-3/5 w-full bg-gray-900 rounded-lg overflow-hidden block group " 
               variants={fade}
             >
               {greeting === true ? (
-                <m.div variants={fadeDelay} className="text-2xl md:text-4xl h-full w-full grid content-center leading-[3rem]">
+                <m.div variants={fadeDelay} className="text-2xl md:text-4xl h-full w-full p-5 grid content-center leading-[3rem]">
                   <BlockContent serializers={{ container: ({ children }) => children }} blocks={home.content} />
                 </m.div> 
               ) : (
