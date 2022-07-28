@@ -8,6 +8,7 @@
 /* Custom Style Imports */
 @import '_typography.css';
 @import '_carousel.css';
+@import '_locomotive.css';
 
 /* Tailwind Utilities */
 @import 'tailwindcss/utilities';

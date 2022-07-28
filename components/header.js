@@ -8,7 +8,7 @@ export default function Header({butterBar}) {
   };
   
   return (
-    <header className="p-5 absolute w-full font-bold text-base md:text-4xl text-white">
+    <header className="p-5 absolute z-50 w-full font-bold text-base md:text-4xl text-white">
         <div className="flex border-b border-white">
           <FancyLink destination="/" a11yText="Navigate to the home page" label="Jacob Byers" extraClasses="mb-1 hover:underline no-underline md:mb-0" />
 

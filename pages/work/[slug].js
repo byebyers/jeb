@@ -152,6 +152,15 @@ export default function WorkSlug(initialData) {
       <Header 
         butterBar={menu.butter}
       />
+
+      <LocomotiveScrollProvider
+        options={{ smooth: true, lerp: 0.05 }}
+        containerRef={containerRef}
+        watch={[]}
+      >
+      <div data-scroll-container ref={containerRef} id="scroll-container">
+      <div data-scroll-section>
+
         <LazyMotion features={domAnimation}>
           <m.main
             initial="initial"
@@ -227,8 +236,12 @@ export default function WorkSlug(initialData) {
               </m.section>
             </m.article>
           </m.main>
+          <Footer contact={contact} />
         </LazyMotion>
-      <Footer contact={contact} />
+
+        </div>
+        </div>
+        </LocomotiveScrollProvider>
     </Layout>
   )
 }

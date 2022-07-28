@@ -9,6 +9,8 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import SanityPageService from '@/services/sanityPageService'
 import BlockContent from '@sanity/block-content-to-react'
+import { useRef } from 'react'
+import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
 
 const query = `{
   "about": *[_type == "about"][0]{
@@ -51,6 +53,7 @@ const pageService = new SanityPageService(query)
 
 export default function About(initialData) {
   const { data: { about, contact, menu } } = pageService.getPreviewHook(initialData)()
+  const containerRef = useRef(null)
 
   return (
     <Layout>
@@ -67,6 +70,14 @@ export default function About(initialData) {
       <Header 
         butterBar={menu.butter}
       />
+
+      <LocomotiveScrollProvider
+        options={{ smooth: true, lerp: 0.05 }}
+        containerRef={containerRef}
+        watch={[]}
+      >
+      <div data-scroll-container ref={containerRef} id="scroll-container">
+      <div data-scroll-section>
 
       <LazyMotion features={domAnimation}>
         <m.main
@@ -138,9 +149,14 @@ export default function About(initialData) {
             </div>
           </m.section>
         </m.main>
+        <Footer contact={contact} />
       </LazyMotion>
+      
+      </div>
+      </div>
+      </LocomotiveScrollProvider>
 
-      <Footer contact={contact} />
+      
     </Layout>
   )
 }
