@@ -43,18 +43,6 @@ export default function App({ Component, pageProps }) {
                   className="bg-black fixed inset-0 z-[100] pointer-events-none flex flex-col p-[14px] md:p-[20px]"
                 >
                   <Div100vh className="bg-black fixed inset-0 z-[100] pointer-events-none flex flex-col p-[14px] md:p-[20px]">
-                    {/* <div className={`fixed top-0 left-0 right-0 w-full z-30 flex flex-wrap justify-center mt-5 `}>
-                      <div className="block overflow-hidden">
-                        <m.div 
-                          initial="hidden"
-                          animate="visible"
-                          variants={revealTop}
-                          transition={{ delay: 0.75, duration: 1, ease: [0.83, 0, 0.17, 1] }}
-                        >
-                          <span className="block leading-none font-mono uppercase text-[14px] md:text-[16px]">Jason O'Rear</span>
-                        </m.div>
-                      </div>
-                    </div> */}
 
                     <div className="my-auto">
                       <div className="w-full h-[60vh] md:h-[63vh] relative mt-[-2vw] overflow-hidden flex items-center justify-center">

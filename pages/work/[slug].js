@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useContext, useEffect } from 'react'
 import Layout from '@/components/layout'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -14,6 +14,7 @@ import Link from 'next/link'
 //import Carousel from '@/components/carousel'
 import BodyRenderer from '@/components/body-renderer'
 //import Loader from '@/components/loader'
+import { Context } from '../../context/state'
 
 const query = `*[_type == "work" && slug.current == $slug][0]{
   title,
@@ -138,6 +139,15 @@ export default function WorkSlug(initialData) {
   const { data: { title, image, stack, contact, credits, contentBlocks, logo, url, menu, seo }  } = pageService.getPreviewHook(initialData)()
 
   const containerRef = useRef(null)
+  const [introContext, setIntroContext] = useContext(Context);
+
+  useEffect(() => {
+    // Set the intro global context to true after 4 seconds
+    setTimeout(() => {
+      setIntroContext(true)
+    }, 3500);
+  },[]);
+
   return (
     <Layout>
       <NextSeo 

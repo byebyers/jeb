@@ -9,8 +9,9 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import SanityPageService from '@/services/sanityPageService'
 import BlockContent from '@sanity/block-content-to-react'
-import { useRef } from 'react'
+import { useRef, useContext, useEffect } from 'react'
 import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
+import { Context } from '../context/state'
 
 const query = `{
   "about": *[_type == "about"][0]{
@@ -54,6 +55,14 @@ const pageService = new SanityPageService(query)
 export default function About(initialData) {
   const { data: { about, contact, menu } } = pageService.getPreviewHook(initialData)()
   const containerRef = useRef(null)
+  const [introContext, setIntroContext] = useContext(Context);
+
+  useEffect(() => {
+    // Set the intro global context to true after 4 seconds
+    setTimeout(() => {
+      setIntroContext(true)
+    }, 3500);
+  },[]);
 
   return (
     <Layout>

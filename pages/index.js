@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Layout from '@/components/layout'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -10,6 +10,7 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import SanityPageService from '@/services/sanityPageService'
 import BlockContent from '@sanity/block-content-to-react'
+import { Context } from '../context/state'
 
 
 const query = `{
@@ -86,6 +87,14 @@ export default function Home(initialData) {
   const imgStyle = {
     borderRadius: '30px'
   }
+  const [introContext, setIntroContext] = useContext(Context);
+
+  useEffect(() => {
+    // Set the intro global context to true after 4 seconds
+    setTimeout(() => {
+      setIntroContext(true)
+    }, 3500);
+  },[]);
 
   return (
     <Layout>
