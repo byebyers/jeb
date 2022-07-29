@@ -118,7 +118,7 @@ export default function Home(initialData) {
             className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex flex-wrap gap-y-4 text-white"
           >
             <m.section 
-              className="md:w-3/5 w-full bg-gray-900 rounded-lg overflow-hidden block group " 
+              className="md:w-3/5 w-full bg-gray-900 rounded-lg overflow-hidden block group min-h-[calc(100vh-26rem)] md:min-h-[calc(100vh-8rem)]" 
               variants={fade}
             >
               {greeting === true ? (
@@ -128,13 +128,13 @@ export default function Home(initialData) {
               ) : (
                 <div className='w-full h-full relative'>
                   <m.div 
-                    className='absolute opacity-100 z-40 w-full h-full grid content-center justify-center' 
+                    className='absolute opacity-100 z-30 w-full h-full grid content-center justify-center' 
                     variants={revealDelayBottom}
                   >
                     <Image
                       image={work[current].logo}
                       focalPoint={work[current].logo.hotspot}
-                      className={`${work[current].orientation === 'banner' ? 'w-[30rem]' : 'button' ? 'w-[25rem]' : 'w-[25rem]'}`}
+                      className={`${work[current].orientation === 'banner' ? 'w-[16rem] md:w-[30rem]' : 'button' ? 'w-[14rem] md:w-[25rem]' : 'w-[14rem] md:w-[25rem]'}`}
                       alt={work[current].logo.alt}
                     />
                   </m.div>
