@@ -11,6 +11,7 @@ import { NextSeo } from 'next-seo'
 import SanityPageService from '@/services/sanityPageService'
 import BlockContent from '@sanity/block-content-to-react'
 import { Context } from '../context/state'
+import { isMobile } from "react-device-detect";
 
 
 const query = `{
@@ -81,7 +82,7 @@ const query = `{
 const pageService = new SanityPageService(query)
 
 export default function Home(initialData) {
-  const { data: { home, work, contact, menu } } = pageService.getPreviewHook(initialData)()
+  const { data: { home, work, contact, menu, route } } = pageService.getPreviewHook(initialData)()
   const [current, setCurrent] = useState(0);
   const [greeting, setGreeting] = useState(true);
   const imgStyle = {
@@ -96,6 +97,7 @@ export default function Home(initialData) {
     }, 3500);
   },[]);
 
+
   return (
     <Layout>
       <NextSeo 
@@ -109,6 +111,7 @@ export default function Home(initialData) {
       />
       <Header 
         butterBar={menu.butter}
+        route={route}
       />
         <LazyMotion features={domAnimation}>
           <m.main
@@ -122,7 +125,7 @@ export default function Home(initialData) {
               variants={fade}
             >
               {greeting === true ? (
-                <m.div variants={fadeDelay} className="text-2xl md:text-4xl h-full w-full p-5 grid content-center leading-[3rem]">
+                <m.div variants={fade} className="text-2xl md:text-4xl h-full w-full p-5 grid content-center leading-[3rem]">
                   <BlockContent serializers={{ container: ({ children }) => children }} blocks={home.content} />
                 </m.div> 
               ) : (
@@ -169,31 +172,52 @@ export default function Home(initialData) {
                         whileTap={{ scale: 0.975, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] }}} 
                         className="hover:cursor-pointer"
                       >
-                        <div 
-                          className="p-2 border-b overflow-hidden border-white text-2xl md:text-4xl w-full mb-2 hover:cursor-pointer"
-                          onMouseEnter={() => (
-                            setCurrent(i),
-                            setGreeting(false)
-                          )}
-                          onMouseLeave={() => (
-                            setCurrent(0),
-                            setGreeting(true)
-                          )}
-                        >
-                          <m.div
-                            variants={revealDelayBottom}
-                            className="flex gap-x-2"
+                        { isMobile ? (
+                          <div 
+                            className="p-2 border-b overflow-hidden border-white text-2xl md:text-4xl w-full mb-2 hover:cursor-pointer"
+                            
                           >
-                            <Image
-                            image={item.thumbnail}
-                            focalPoint={item.thumbnail.hotspot}
-                            className={`w-6 grid content-center`}
-                            alt={item.thumbnail.alt}
-                            />
-                            {item.title}
-                          </m.div>
-                          
-                        </div>
+                            <m.div
+                              variants={revealDelayBottom}
+                              className="flex gap-x-2"
+                            >
+                              <Image
+                              image={item.thumbnail}
+                              focalPoint={item.thumbnail.hotspot}
+                              className={`w-6 grid content-center`}
+                              alt={item.thumbnail.alt}
+                              />
+                              {item.title}
+                            </m.div>
+                            
+                          </div>
+                        ) : (
+                          <div 
+                            className="p-2 border-b overflow-hidden border-white text-2xl md:text-4xl w-full mb-2 hover:cursor-pointer"
+                            onMouseEnter={() => (
+                              setCurrent(i),
+                              setGreeting(false)
+                            )}
+                            onMouseLeave={() => (
+                              setCurrent(0),
+                              setGreeting(true)
+                            )}
+                          >
+                            <m.div
+                              variants={revealDelayBottom}
+                              className="flex gap-x-2"
+                            >
+                              <Image
+                              image={item.thumbnail}
+                              focalPoint={item.thumbnail.hotspot}
+                              className={`w-6 grid content-center`}
+                              alt={item.thumbnail.alt}
+                              />
+                              {item.title}
+                            </m.div>
+                            
+                          </div>
+                        )}
                       </m.div>
                     </Link>
                   )

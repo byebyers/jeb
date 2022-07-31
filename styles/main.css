@@ -39,3 +39,8 @@ body {
     display: inline-block;
     text-align: left;
 }
+
+.bigDot::before {
+ content: "•";
+ margin-left: -0.8rem;
+}

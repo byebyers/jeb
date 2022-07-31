@@ -53,7 +53,7 @@ const query = `{
 const pageService = new SanityPageService(query)
 
 export default function About(initialData) {
-  const { data: { about, contact, menu } } = pageService.getPreviewHook(initialData)()
+  const { data: { about, contact, menu, route } } = pageService.getPreviewHook(initialData)()
   const containerRef = useRef(null)
   const [introContext, setIntroContext] = useContext(Context);
 
@@ -78,6 +78,7 @@ export default function About(initialData) {
 
       <Header 
         butterBar={menu.butter}
+        route={route}
       />
 
       <LocomotiveScrollProvider

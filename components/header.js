@@ -2,7 +2,7 @@ import FancyLink from '@/components/fancyLink'
 import Marquee from "react-smooth-marquee"
 //import Container from '@/components/container'
 
-export default function Header({butterBar}) {
+export default function Header({butterBar, route}) {
   const runCallback = (cb) => {
     return cb();
   };
@@ -31,11 +31,10 @@ export default function Header({butterBar}) {
           </div>
 
           <nav className="flex ml-auto  space-x-6 md:w-auto">
-            <FancyLink destination="/" a11yText="Navigate to the home page" label="Work" extraClasses="hover:underline no-underline" />
-
-            <FancyLink destination="/about" a11yText="Navigate to the about page" label="About" extraClasses="hover:underline no-underline" />
+            <FancyLink destination="/" a11yText="Navigate to the home page" label="Work" extraClasses={`${route === '/' ? 'bigDot' : ''} hover:underline no-underline`} />
+            <FancyLink destination="/about" a11yText="Navigate to the about page" label="About" extraClasses={`${route === '/about' ? 'bigDot' : ''} hover:underline no-underline`} />
           
-            <a href={`mailto:byers.jacob@gmail.com`} className="hover:underline no-underline hover:text-gray-500 focus:text-gray-500">Contact</a>
+            <a href={`mailto:byers.jacob@gmail.com`} className="pl-3 hover:underline no-underline hover:text-gray-500 focus:text-gray-500">Contact</a>
           </nav>
         </div>
     </header>

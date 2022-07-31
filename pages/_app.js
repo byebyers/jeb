@@ -76,7 +76,7 @@ export default function App({ Component, pageProps }) {
             {/* INTRO END */}
 
         <AnimatePresence exitBeforeEnter>
-          <Component {...pageProps} key={router.asPath} />
+          <Component {...pageProps} key={router.asPath} route={router.asPath} />
         </AnimatePresence>
       </Context.Provider>
     </>
