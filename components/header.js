@@ -34,7 +34,7 @@ export default function Header({butterBar, route}) {
             <FancyLink destination="/" a11yText="Navigate to the home page" label="Work" extraClasses={`${route === '/' ? 'bigDot' : ''} hover:underline no-underline`} />
             <FancyLink destination="/about" a11yText="Navigate to the about page" label="About" extraClasses={`${route === '/about' ? 'bigDot' : ''} hover:underline no-underline`} />
           
-            <a href={`mailto:byers.jacob@gmail.com`} className="pl-3 hover:underline no-underline hover:text-gray-500 focus:text-gray-500">Contact</a>
+            <a href={`mailto:byers.jacob@gmail.com`} className="hover:underline no-underline hover:text-gray-500 focus:text-gray-500">Contact</a>
           </nav>
         </div>
     </header>

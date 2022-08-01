@@ -121,7 +121,7 @@ export default function Home(initialData) {
             className="px-5 pt-[5rem] min-h-[calc(100vh-3.5rem)] flex flex-wrap gap-y-4 text-white"
           >
             <m.section 
-              className="md:w-3/5 w-full bg-gray-900 rounded-lg overflow-hidden block group min-h-[calc(100vh-26rem)] md:min-h-[calc(100vh-8rem)]" 
+              className="md:w-3/5 w-full bg-gray-900 rounded-lg overflow-hidden block group min-h-[calc(100vh-26rem)] md:min-h-[calc(100vh-10rem)]" 
               variants={fade}
             >
               {greeting === true ? (
